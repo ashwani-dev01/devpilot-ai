@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import compression from "compression";
 import morgan from "morgan";
+import routes from "./routes";
 
 const app = express();
 
@@ -35,5 +36,8 @@ app.use(express.json());
  * Parse URL Encoded Data
  */
 app.use(express.urlencoded({ extended: true }));
-
+/*
+routes
+*/
+app.use(routes);
 export default app;
