@@ -5,6 +5,7 @@ import compression from "compression";
 import morgan from "morgan";
 import routes from "./routes";
 import { errorMiddleware } from "./middleware/error.middleware";
+import { notFoundMiddleware } from "./middleware/not-found.middleware";
 
 const app = express();
 
@@ -41,6 +42,8 @@ app.use(express.urlencoded({ extended: true }));
 routes
 */
 app.use(routes);
+//
+app.use(notFoundMiddleware);
 /*
 errorMiddleware
 */
