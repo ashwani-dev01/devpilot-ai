@@ -4,40 +4,45 @@ import helmet from "helmet";
 import compression from "compression";
 import morgan from "morgan";
 import routes from "./routes";
+import { errorMiddleware } from "./middleware/error.middleware";
 
 const app = express();
 
-/**
- * Security Middleware
+/*
+  Security Middleware
  */
 app.use(helmet());
 
-/**
- * Enable CORS
+/*
+  Enable CORS
  */
 app.use(cors());
 
-/**
- * Compress responses
+/*
+  Compress responses
  */
 app.use(compression());
 
-/**
- * HTTP Request Logger
+/*
+  HTTP Request Logger
  */
 app.use(morgan("dev"));
 
-/**
- * Parse JSON
+/*
+ Parse JSON
  */
 app.use(express.json());
 
-/**
- * Parse URL Encoded Data
+/*
+  Parse URL Encoded Data
  */
 app.use(express.urlencoded({ extended: true }));
 /*
 routes
 */
 app.use(routes);
+/*
+errorMiddleware
+*/
+app.use(errorMiddleware);
 export default app;
